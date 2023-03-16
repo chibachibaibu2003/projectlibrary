@@ -21,7 +21,7 @@ public class RegisterUser1Servlet extends HttpServlet {
      */
     public RegisterUser1Servlet() {
         super();
-        // TODO Auto-generated constructor stub
+     
     }
 
 	/**

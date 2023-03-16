@@ -18,7 +18,7 @@
 <img src="img/register1.png"alt="">
 <form action="RegisterUser2Servlet"method="get">
 	<input type="email"name="email"placeholder="メールアドレス">
-	<input type="button"name="button"><a href="TermspageServlet">利用規約</a>に同意します<br>
+	<input type="button"name="button"><a href="./TermspageServlet">利用規約</a>	に同意します<br>
 	<input type="submit" id ="button" value="Search">
 </form>
 <h1><img alt="" src="img/orline.png"></h1>

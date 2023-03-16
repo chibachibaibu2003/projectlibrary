@@ -50,20 +50,14 @@ public class libraryDAO{
 	}
 	
 	private static AmazonS3 auth() {
-		// 認証情報を用意
 		AWSCredentials credentials = new BasicAWSCredentials(
-				// アクセスキー
 				"AKIA5MGO6UUWLMS43AMK",
-				// シークレットキー
 				"oHOkNrWSwr6ufrrWO2firpWWzpYdK/p6ihUJmxi1"
 				);
 	 
-		// クライアントを生成
 		AmazonS3 client = AmazonS3ClientBuilder
 			.standard()
-			// 認証情報を設定
 			.withCredentials(new AWSStaticCredentialsProvider(credentials))
-			// リージョンを AP_NORTHEAST_1(東京) に設定
 			.withRegion(Regions.AP_NORTHEAST_1)
 			.build();
 		return client;
@@ -73,21 +67,14 @@ public class libraryDAO{
 		AmazonS3 client = auth();
 		 byte[] buf = Base64.getDecoder().decode(fileBase64);
 		    try (InputStream input = new ByteArrayInputStream(buf)) {
-		        // メタ情報を生成
 		        ObjectMetadata metaData = new ObjectMetadata();
 		        metaData.setContentLength(buf.length);
-		        // リクエストを生成
 		        PutObjectRequest request = new PutObjectRequest(
-		            // アップロード先バケット名
 		            "coverimage",
-		            // アップロード先のパス（キー名）
 		            filename,
-		            // InputStream
 		            input,
-		            // メタ情報
 		            metaData
 		        );
-		        // アップロード
 		        client.putObject(request);
 		    }
 	}

@@ -69,6 +69,7 @@ transform:translate(110px,0px);
   width: 68%;
   height: 80px;
   background: transparent;
+  background-color: white;
   position:relative;
   border: solid 3px #535353;
   top: 10px;

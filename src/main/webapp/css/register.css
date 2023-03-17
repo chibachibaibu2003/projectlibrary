@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+body{
+	background-color: #F2FDFF;
+	padding:0;
+	margin: 0;
+}
+
+.header {
+	width: 100%;
+	height: 70px;
+	background: #b7ff6f;
+	border: 2px solid #707070;
+}
+
+.center{
+	text-align: center;
+	font-size: 3rem;
+	font-family:"book antiqua"
+}
+
+.checkpoint{
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+}
+
+.searchbox{
+	display: flex;
+	justify-content: center;
+}
+
+.search{
+	width: 500px;
+	height: 50px;
+	background: #fff;
+	border: 2px solid #707070;
+	font-size: 1.5rem;
+}
+
+.submit{
+	width:500px;
+	height:50px;
+	background-color: #58ABFD;
+	border:2px solid #707070;
+	color: white;
+	font-size: 1.5rem;
+ 	border-top-left-radius: 20px;
+  	border-bottom-left-radius: 20px;
+  	border-top-right-radius: 20px;
+ 	border-bottom-right-radius: 20px;
+}
+
+
+.submit:hover{
+	color:#58ABFD;
+	background-color: whitesmoke;
+}
+
+.loginbutton{
+	display: flex;
+	justify-content: center;
+}
+.button{
+	text-decoration: none;
+}
+
+
+.button_a{
+	width: 600px;
+  	height: 35px;
+  	font-size: 1.3rem;
+  	padding: 10px 0px;
+  	background-color:whitesmoke;
+  	border:1px solid black;
+  	text-align: center;
+  	text-decoration: none;
+  	color:black;
+}
+
+.button_a:hover{
+	color: darkgray;
+	background-color: whitesmoke;
+}
+
+

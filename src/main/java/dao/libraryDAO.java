@@ -149,7 +149,7 @@ public class libraryDAO{
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println(result + "ŒXV‚µ‚Ü‚µ‚½B");
+			System.out.println(result + "ä»¶æ›´æ–°ã—ã¾ã—ãŸã€‚");
 		}
 		return result;
 	}

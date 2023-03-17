@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class TermspageServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/TermspageServlet")
+public class TermspageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public TermspageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,9 +28,9 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path="WEB-INF/view/login.jsp";
-		RequestDispatcher dispatcher=request.getRequestDispatcher(path);
-		dispatcher.forward(request, response);
+		String path="WEB-INF/view/termUse.jsp";
+		RequestDispatcher disptcher=request.getRequestDispatcher(path);
+		disptcher.forward(request, response);
 	}
 
 	/**

@@ -1,0 +1,76 @@
+@charset "UTF-8";
+body {
+    text-align: center;
+    background-color: #F2FDFF;
+}    
+
+.button{
+	margin-right: 50px;
+	margin-left: 50px;
+	font-size     : 21pt;        /* 文字サイズ */
+	text-align    : center;      /* 文字位置   */
+	cursor        : pointer;     /* カーソル   */
+	padding       : 13px 21px;   /* 余白       */
+	background    : #6F89F1;     /* 背景色     */
+	color         : #ffffff;     /* 文字色     */
+	line-height   : center;         /* 1行の高さ  */
+	transition    : .3s;         /* なめらか変化 */
+	text-decoration: none;
+	border-bottom: none;
+	width: 200px;
+	height: 70px;
+}
+
+.button:hover {
+    color         : #6F89F1;     /* 背景色     */
+    background    : #ffffff;     /* 文字色     */
+}
+
+.button1{
+    margin-right: 50px;
+    margin-left: 50px;
+    font-size     : 25pt;        /* 文字サイズ */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 13px 21px;   /* 余白       */
+    background    : #f9be58;     /* 背景色     */
+    color         : #ffffff;     /* 文字色     */
+    line-height   : center;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    text-decoration: none;
+    border-bottom: none;
+    width: 220px;
+    height: 70px;
+}
+
+.button1:hover {
+    color         : #f9be58;     /* 背景色     */
+    background    : #ffffff;     /* 文字色     */
+}  
+
+.content {
+    margin: auto;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.inner {
+    text-align: center;
+    display: flex;
+	flex-direction: row;
+    height: 22vh;
+}
+
+.content2 {
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 25vh;
+}
+
+.inner2 {
+    text-align: center;
+    display: flex;
+	flex-direction: row;
+}

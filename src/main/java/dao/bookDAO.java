@@ -12,24 +12,7 @@ import java.util.List;
 
 import dto.book;
 
-public class BookDAO {
-
-	// DBへのConnectionを取得(参考：これまで教えていたやり方)
-//	private static Connection getConnection() throws URISyntaxException, SQLException {
-//		try {
-//			Class.forName("org.postgresql.Driver");
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//
-//	    String username = "postgres";
-//	    String password = "morijyobi";
-//	    String dbUrl = "jdbc:postgresql://localhost:5432/postgres";
-//
-//	    return DriverManager.getConnection(dbUrl, username, password);
-//	}
-	
-	// DBへのConnectionを取得（本番環境/テスト環境 切り替え用）
+public class bookDAO {
 	private static Connection getConnection() throws URISyntaxException, SQLException {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -45,7 +28,6 @@ public class BookDAO {
 	    return DriverManager.getConnection(dbUrl, username, password);
 	}
 	
-	// 引数の Book インスタンスを元にデータを1件INSERTするメソッド
 	public static int registerbook(book bo) {
 		String sql = "INSERT INTO book VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int result = 0;
@@ -74,10 +56,9 @@ public class BookDAO {
 		}
 		return result;
 	}
-	// 本のデータを全件取得する
+	
 			public static List<book> selectAllbook() {
 				
-				// 返却用変数
 				List<book> result = new ArrayList<>();
 
 				String sql = "SELECT * FROM book";
@@ -109,7 +90,6 @@ public class BookDAO {
 				} catch (URISyntaxException e) {
 					e.printStackTrace();
 				}
-				// Listを返却する。0件の場合は空のListが返却される。
 				return result;
 			}
 
@@ -117,8 +97,8 @@ public class BookDAO {
 			String sql = "DELETE FROM book WHERE id = ?";
 			int result = 0;
 			try (
-				 Connection con = getConnection();	                   // DB接続
-				 PreparedStatement pstmt = con.prepareStatement(sql); // 構文解析
+				 Connection con = getConnection();	                   
+				 PreparedStatement pstmt = con.prepareStatement(sql); 
 				 ){
 			
 				pstmt.setInt(1, ID);

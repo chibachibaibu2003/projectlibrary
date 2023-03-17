@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>administrator home</title>
+<title>admin home</title>
 <link rel="stylesheet" href="css/adminhome.css">
 </head>
 <body>

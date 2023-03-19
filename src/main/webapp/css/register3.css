@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+body{
+	background-color: #F2FDFF;
+	padding:0;
+	margin: 0;
+}
+
+.header {
+	width: 100%;
+	height: 70px;
+	background: #b7ff6f;
+	border: 2px solid #707070;
+}
+
+.center{
+	text-align: center;
+	font-size: 3rem;
+	font-family:"book antiqua"
+}
+
+.checkpoint{
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+}
+
+
+.searchbox{
+	display: flex;
+	justify-content: center;
+}
+
+.search{
+	width: 380px;
+	height: 60px;
+	background: #fff;
+	border: 2px solid #707070;
+	font-size: 1.5rem;
+	margin-bottom: 40px;
+	border-top-left-radius: 20px;
+  	border-bottom-left-radius: 20px;
+  	border-top-right-radius: 20px;
+ 	border-bottom-right-radius: 20px;
+}
+.passbox{
+	width: 400px;
+	height: 50px;
+	background: #fff;
+	border: 2px solid #707070;
+	font-size: 1.5rem;
+	margin-bottom: 70px;
+}
+
+#button{
+	width:300px;
+	height:70px;
+	background-color: #58ABFD;
+	border:2px solid #707070;
+	color: black;
+	font-size: 2rem;
+	text-decoration: none;
+ 	border-top-left-radius: 30px;
+  	border-bottom-left-radius: 30px;
+  	border-top-right-radius: 30px;
+ 	border-bottom-right-radius: 30px;
+ 	transform: translate(250px,0px);
+}
+
+#button:hover{
+	color:#58ABFD;
+	background-color: whitesmoke;
+}
+

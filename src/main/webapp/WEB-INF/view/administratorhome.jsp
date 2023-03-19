@@ -26,7 +26,7 @@
 
     <div class="content2">
         <div class="inner2">
-            <a href="RegisterAccountServlet" class="button">アカウント登録</a>
+            <a href="RegisterAdminServlet" class="button">アカウント登録</a>
             <a href="DeleteAccountServlet" class="button">アカウント削除</a>
             <a href="AccountSearchServlet" class="button">アカウント情報検索</a>
         </div>

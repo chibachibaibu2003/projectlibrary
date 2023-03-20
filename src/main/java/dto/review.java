@@ -6,9 +6,9 @@ public class review{
 	private String comment_title;
 	private String comment;
 	private int user_id;
-	private int isbn;
+	private String isbn;
 	private String review_date;
-	public review(int review_id, int point, String comment_title, String comment, int user_id, int isbn,
+	public review(int review_id, int point, String comment_title, String comment, int user_id, String isbn,
 			String review_date) {
 		super();
 		this.review_id = review_id;
@@ -49,10 +49,10 @@ public class review{
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
-	public int getIsbn() {
+	public String getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(int isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 	public String getReview_date() {

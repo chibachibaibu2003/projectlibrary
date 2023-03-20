@@ -6,12 +6,12 @@ public class book{
 	private String author_name;
 	private String publisher;
 	private String pub_date;
-	private int isbn;
+	private String isbn;
 	private int category_id;
 	private int brand_check;
 	private String comment;
 	private String URL;
-	public book(int book_id, String book_name, String author_name, String publisher, String pub_date, int isbn,
+	public book(int book_id, String book_name, String author_name, String publisher, String pub_date, String isbn,
 			int category_id, int brand_check, String comment, String uRL) {
 		super();
 		this.book_id = book_id;
@@ -55,10 +55,10 @@ public class book{
 	public void setPub_date(String pub_date) {
 		this.pub_date = pub_date;
 	}
-	public int getIsbn() {
+	public String getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(int isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 	public int getCategory_id() {

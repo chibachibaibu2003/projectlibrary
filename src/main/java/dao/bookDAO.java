@@ -40,7 +40,7 @@ public class bookDAO {
 			pstmt.setString(2, bo.getAuthor_name());
 			pstmt.setString(3, bo.getPublisher());
 			pstmt.setString(4, bo.getPub_date());
-			pstmt.setInt(5, bo.getIsbn());
+			pstmt.setString(5, bo.getIsbn());
 			pstmt.setInt(6, bo.getCategory_id());
 			pstmt.setInt(7, bo.getBrand_check());
 			pstmt.setString(8, bo.getComment());
@@ -74,7 +74,7 @@ public class bookDAO {
 							String author_name = rs.getString("author_name");
 							String publisher = rs.getString("publisher");
 							String pub_date = rs.getString("pub_date");
-							int isbn = rs.getInt("isbn");
+							String isbn = rs.getString("isbn");
 							int category_id = rs.getInt("category_id");
 							int brand_check = rs.getInt("brand_check");
 							String comment = rs.getString("comment");

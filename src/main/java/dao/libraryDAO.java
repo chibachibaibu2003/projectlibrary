@@ -12,8 +12,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -41,6 +43,9 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
 
 import dto.account;
+import dto.book;
+import dto.lendbook;
+import dto.review;
 import util.GenerateHashedPw;
 import util.GenerateSalt;
 
@@ -302,4 +307,164 @@ public class libraryDAO{
 		}
 		return null;
 	}
+	
+	public static List<lendbook> lendlist(account user){
+		String sql="SELECT * FROM lendbook WHERE user_id=?";
+		List<lendbook> result=new ArrayList<>();
+		
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setInt(1,user.getId());
+			try (ResultSet rs = pstmt.executeQuery()){
+				
+				while(rs.next()) {
+					int lendId=rs.getInt("lend_id");
+					String lendDate=rs.getString("lend_date");
+					String returnDate=rs.getString("return_date");
+					String delayDate=rs.getString("delay_date");
+					int userId=rs.getInt("user_id");
+					int bookId=rs.getInt("book_id");
+					
+					lendbook list=new lendbook(lendId, lendDate, returnDate, delayDate, userId, bookId);				
+					result.add(list);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public static List<lendbook> Nowlendlist(account user){
+		String sql="SELECT * FROM lendbook WHERE user_id=? and return_date is null";
+		List<lendbook> result=new ArrayList<>();
+		
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setInt(1,user.getId());
+			try (ResultSet rs = pstmt.executeQuery()){
+				
+				while(rs.next()) {
+					int lendId=rs.getInt("lend_id");
+					String lendDate=rs.getString("lend_date");
+					String returnDate=rs.getString("return_date");
+					String delayDate=rs.getString("delay_date");
+					int userId=rs.getInt("user_id");
+					int bookId=rs.getInt("book_id");
+					
+					lendbook list=new lendbook(lendId, lendDate, returnDate, delayDate, userId, bookId);				
+					result.add(list);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public static List<book> CanReviewBookList(List<lendbook> data){
+		String sql="SELECT * FROM book WHERE book_id=? ";
+		List<lendbook> list=data;
+		List<book> result=new ArrayList<>();
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			for(lendbook info : list) {
+				pstmt.setInt(1,info.getBook_id());
+				try (ResultSet rs = pstmt.executeQuery()){
+				
+					while(rs.next()) {
+						int bookId=rs.getInt("book_id");
+						String bookname=rs.getString("book_name");
+						String authorname=rs.getString("author_name");
+						String publisher=rs.getString("publisher");
+						String pubdate=rs.getString("pub_date");
+						String isbn=rs.getString("isbn");
+						int categoryId=rs.getInt("category_id");
+						int brandcheck=rs.getInt("brand_check");
+						String comment=rs.getString("comment");
+						String URL=rs.getString("URL");
+						book bookinfo=new book(bookId,bookname,authorname,publisher,pubdate,isbn,categoryId,brandcheck,comment,URL);				
+						result.add(bookinfo);
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+	
+	public static List<review> ReviewList(List<book> data,account userdata){
+		String sql="select*from review where user_id=? and book_id=?";
+		List<book> list=data;
+		List<review> result=new ArrayList<>();
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			for(book info : list) {
+				pstmt.setInt(1,userdata.getId());
+				pstmt.setInt(2,info.getBook_id());
+				try (ResultSet rs = pstmt.executeQuery()){
+				
+					while(rs.next()) {
+						int reviewId=rs.getInt("review_id");
+						int point=rs.getInt("point");
+						String title=rs.getString("comment_title");
+						String comment=rs.getString("comment");
+						int userId=rs.getInt("user_id");
+						String isbn=rs.getString("isbn");
+						String date=rs.getString("review_date");
+						review reviewinfo=new review(reviewId,point,title,comment,userId,isbn,date);				
+						result.add(reviewinfo);
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public static int ReviewWrite(review info) {
+		String sql="insert into account values(default,?,?,?,?,?,?)";
+		int result=0;
+		
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setInt(1,info.getPoint());
+			pstmt.setString(2,info.getComment_title());
+			pstmt.setString(3,info.getComment());
+			pstmt.setInt(4,info.getUser_id());
+			pstmt.setString(5, info.getIsbn());
+			pstmt.setString(6, info.getReview_date());
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件更新しました。");
+		}
+		return result;
+	}
+	
 }

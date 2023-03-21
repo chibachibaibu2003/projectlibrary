@@ -255,6 +255,25 @@ public class libraryDAO{
 		return result;
 	}
 	
+	public static int DeleteAccount(account user) {
+		String sql="delete from account where id=?";
+		int result=0;
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setInt(1,user.getId());
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件削除しました。");
+		}
+		return result;
+	}
+	
 	public static String getSalt(String mail) {
 		String sql = "SELECT salt FROM account WHERE mail = ?";
 		

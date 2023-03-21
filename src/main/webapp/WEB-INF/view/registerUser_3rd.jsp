@@ -28,8 +28,8 @@
 <br>
 <div class="searchbox">
 	<form action="./RegisterUser4Servlet"method="post">
-		<input type="text"name="firstname"class="search" autocomplete="off"placeholder="姓">
-		<input type="text"name="familyname"class="search" autocomplete="off"placeholder="名"><br>
+		<input type="text"name="familyname"class="search" autocomplete="off"placeholder="姓">
+		<input type="text"name="firstyname"class="search" autocomplete="off"placeholder="名"><br>
 		<input type="password"name="pass"class="passbox" autocomplete="off"placeholder="パスワード　英数10字以上"><br>
 		<input type="hidden"name="email"value="<%=email%>">
 		<input type="submit"id="button"value="登録">

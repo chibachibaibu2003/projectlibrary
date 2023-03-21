@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.net.URL;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,6 +37,11 @@ public class RegisterUser4Servlet extends HttpServlet {
 		String firstname=request.getParameter("firstname");
 		String familyname=request.getParameter("familyname");
 		String pass=request.getParameter("pass");
+		
+		String subject="登録完了のお知らせ";
+		String text="会員IDの新規登録が完了しました！";
+		String urlStr="";
+		URL url=new URL(urlStr);
 		String path="";
 		
 		if(email.length()<5||firstname==null||familyname==null||pass.length()<=10) {
@@ -46,6 +52,8 @@ public class RegisterUser4Servlet extends HttpServlet {
 			int result=libraryDAO.registerUserAccount(user);
 			if(result==1) {
 				path="WEB-INF/view/RegisterUser_4th.jsp";
+				libraryDAO.sendMail(email, subject, text, url);
+				
 			}else {
 				path="WEB-INF/view/registerUser_3rd.jsp?email="+email+"&error=1";
 			}

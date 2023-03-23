@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.libraryDAO;
 import dto.account;
@@ -59,7 +60,9 @@ public class LoginExcuteServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			return;
 		}else if(account.getUser_check()==0) {
-			path="WEB-INF/view/mypage.jsp";
+			path="WEB-INF/view/home_after.jsp";
+			HttpSession session=request.getSession();
+			session.setAttribute("info",account);
 			RequestDispatcher dispatcher=request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			return;

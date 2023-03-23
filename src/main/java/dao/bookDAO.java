@@ -7,9 +7,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.account;
 import dto.book;
 
 public class bookDAO {
@@ -29,7 +32,7 @@ public class bookDAO {
 	}
 	
 	public static int registerbook(book bo) {
-		String sql = "INSERT INTO book VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO book VALUES(default, ?, ?, ?, ?, ?, ?, 0, ?, ?)";
 		int result = 0;
 		
 		try (
@@ -112,4 +115,35 @@ public class bookDAO {
 			}
 			return result;
 		}
-}
+		    public boolean isDateOverOneYear(String dateStr) {
+		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		        LocalDate inputDate = LocalDate.parse(dateStr, formatter);
+		        LocalDate currentDate = LocalDate.now();
+		        return inputDate.isBefore(currentDate.minusYears(1));
+		    }
+		    
+		    public static List<account> getAccountBymail(String email) {
+		        List<account> users = new ArrayList<>();
+		        String query = "SELECT * FROM account WHERE mail = ?";
+		        try(Connection con = getConnection();
+		        	PreparedStatement statement = con.prepareStatement(query);
+		        	){
+		   
+		            statement.setString(1, email);
+		            ResultSet resultSet = statement.executeQuery();
+		            while (resultSet.next()) {
+		                int id = resultSet.getInt("id");
+		                String name = resultSet.getString("name");
+		                String mail = resultSet.getString("mail");
+		                int user_check = resultSet.getInt("user_check");
+		                users.add(new account(id, name, mail, null, null, user_check));
+		            }
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        } catch (URISyntaxException e) {
+					e.printStackTrace();
+		        }	
+		        return users;
+		    }
+	}
+

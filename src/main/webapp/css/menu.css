@@ -89,11 +89,11 @@ transform:translate(110px,0px);
 .linebox_a{
   width: 120px;
   height: 40px;
-  background-color: rgb(192, 192, 192);
+  background-color: rgb(230, 227, 232);
   border:1px solid black;
   justify-content: center;
   align-items: center;
-  transform: translate(164px, -16px);
+  transform: translate(280px, -16px);
   display:flex;
   text-decoration: none;
   color:black;
@@ -104,11 +104,11 @@ transform:translate(110px,0px);
 .linebox_b{
   width: 120px;
   height: 40px;
-  background-color: rgb(192, 192, 192);
+  background-color: rgb(230, 227, 232);
   border:1px solid black;
   justify-content: center;
   align-items: center;
-  transform: translate(23px, 25px);
+  transform: translate(139px, 25px);
   text-decoration: none;
   color:black;
   display:flex;

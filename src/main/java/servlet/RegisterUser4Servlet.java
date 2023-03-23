@@ -53,7 +53,6 @@ public class RegisterUser4Servlet extends HttpServlet {
 			if(result==1) {
 				path="WEB-INF/view/RegisterUser_4th.jsp";
 				libraryDAO.sendMail(email, subject, text, url);
-				
 			}else {
 				path="WEB-INF/view/registerUser_3rd.jsp?email="+email+"&error=1";
 			}

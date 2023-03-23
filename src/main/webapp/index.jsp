@@ -27,9 +27,8 @@
   	<img src="img/aikon.png"alt="" width="70" height="70">
   	<font size="6">
   		<a href="index.jsp">ホーム</a>
-  		<a href="">本一覧</a>
-  		<a href="">検索</a>
-  		<a href="">マイページ</a>
+  		<a href="./SearchServlet">検索</a>
+  		<a href="./LoginServlet">マイページ</a>
   	</font>
   	<div class="tate">
   		<a class="linebox_a" href="./RegisterUser1Servlet">新規登録</a>
@@ -38,6 +37,41 @@
   </div>
 <div class="osusume">
 <font size="7"><p>おすすめの本</p></font>
+</div>
+
+<div class="yoko">
+<div class="osusume_title_1">
+<font size="5" ><p>ドラゴンボール</p></font>
+</div>
+<div class="osusume_title_2">
+<font size="5" ><p>ドラゴンボール</p></font>
+</div>
+<div class="osusume_title_3">
+<font size="5" ><p>ドラゴンボール</p></font>
+</div>
+<div class="osusume_title_4">
+<font size="5" ><p>ドラゴンボール</p></font>
+</div>
+</div>
+<div class="osusume_itiran">
+<div class="osusume_book_1">
+<img src="img/1.jpg" alt="" width="" height="">
+</div>
+<div class="osusume_book_2">
+<img src="img/1.jpg" alt="" width="" height="">
+</div>
+<div class="osusume_book_3">
+<img src="img/1.jpg" alt="" width="" height="">
+</div>
+<div class="osusume_book_4">
+<img src="img/1.jpg" alt="" width="" height="">
+</div>
+</div>
+    
+<div>
+<div class="dotted_line"> 
+<p class=""></p>
+</div>
 </div>
 <div class="yoko">
 <div class="osusume_title_1">
@@ -58,75 +92,15 @@
 <img src="img/1.jpg" alt="" width="" height="">
 </div>
 <div class="osusume_book_2">
-  <img src="img/1.jpg" alt="" width="" height="">
-  </div>
-  <div class="osusume_book_3">
-    <img src="img/1.jpg" alt="" width="" height="">
-    </div>
-    <div class="osusume_book_4">
-      <img src="img/1.jpg" alt="" width="" height="">
-      </div>
-    </div>
-    <div class="yoko">
-      <div class="osusume_book_evaluation_1">
-      <font size="5"><p>評価0.0/0.0</p></font>
-    </div>
-    <div class="osusume_book_evaluation_2">
-      <font size="5"><p>評価0.0/0.0</p></font>
-    </div>
-    <div class="osusume_book_evaluation_3">
-      <font size="5"><p>評価0.0/0.0</p></font>
-    </div>
-    <div class="osusume_book_evaluation_4">
-      <font size="5"><p>評価0.0/0.0</p></font>
-    </div>
-    </div>
-    <div>
-    <div class="dotted_line"> 
-      <p class=""></p>
-    </div>
-  </div>
-    <div class="yoko">
-      <div class="osusume_title_1">
-      <font size="5" ><p>ドラゴンボール</p></font>
-      </div>
-      <div class="osusume_title_2">
-      <font size="5" ><p>ドラゴンボール</p></font>
-      </div>
-      <div class="osusume_title_3">
-      <font size="5" ><p>ドラゴンボール</p></font>
-      </div>
-      <div class="osusume_title_4">
-      <font size="5" ><p>ドラゴンボール</p></font>
-      </div>
-      </div>
-      <div class="osusume_itiran">
-      <div class="osusume_book_1">
-      <img src="img/1.jpg" alt="" width="" height="">
-      </div>
-      <div class="osusume_book_2">
-        <img src="img/1.jpg" alt="" width="" height="">
-        </div>
-        <div class="osusume_book_3">
-          <img src="img/1.jpg" alt="" width="" height="">
-          </div>
-          <div class="osusume_book_4">
-            <img src="img/1.jpg" alt="" width="" height="">
-            </div>
-          </div>
-          <div class="yoko">
-            <div class="osusume_book_evaluation_1">
-            <font size="5"><p>評価0.0/0.0</p></font>
-          </div>
-          <div class="osusume_book_evaluation_2">
-            <font size="5"><p>評価0.0/0.0</p></font>
-          </div>
-          <div class="osusume_book_evaluation_3">
-            <font size="5"><p>評価0.0/0.0</p></font>
-          </div>
-          <div class="osusume_book_evaluation_4">
-            <font size="5"><p>評価0.0/0.0</p></font>
-          </div>
-          </div>
+<img src="img/1.jpg" alt="" width="" height="">
+</div>
+<div class="osusume_book_3">
+<img src="img/1.jpg" alt="" width="" height="">
+</div>
+<div class="osusume_book_4">
+<img src="img/1.jpg" alt="" width="" height="">
+</div>
+ </div>
+
 </body>
 </html>

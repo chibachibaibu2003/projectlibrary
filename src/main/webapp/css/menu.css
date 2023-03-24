@@ -3,12 +3,13 @@ body{
 }
 
 header {
-  width: 100%;
-  height: 70px;
-  background: #b7ff6f;
-  border: 4px solid #707070;
-  box-sizing: border-box;
-  }
+    width: 100%;
+    height: 70px;
+    background: #b7ff6f;
+    border: 4px solid #707070;
+    box-sizing: border-box;
+    
+    }
    
    
 .title {
@@ -33,9 +34,6 @@ h1 img
 {
 	vertical-align: middle;
 }
-.right{
-	display:flex;
-}
 
 .search{
 width: 300px;
@@ -58,13 +56,13 @@ transform:translate(110px,0px);
 	display:flex;
 }
 .right{
-	display:flex;
-	width:430px;
-	padding:0px;
-}
-.left{
-	width:calc(100% - 300px);
-}
+      display:flex;
+      width:430px;
+      padding:10px 10px 10px ;
+  }
+  .left{
+      width:calc(100% - 300px);
+  }
 .box1{
   width: 68%;
   height: 80px;

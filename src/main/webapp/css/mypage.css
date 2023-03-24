@@ -1,0 +1,205 @@
+@charset "UTF-8";
+
+body{
+    background: color #afedf8;
+  }
+  
+  header {
+    width: 100%;
+    height: 70px;
+    background: #b7ff6f;
+    border: 4px solid #707070;
+    box-sizing: border-box;
+    
+    }
+     
+    .title {
+      margin-right: auto;
+      margin: 0px;
+      padding: 0px;
+      font-family:"book antiqua"
+  }
+    .menu-item {
+      list-style: none;
+      display: inline-block;
+      padding: 10px;
+    }
+    body { 
+          margin: 0px;
+          padding: 0px;
+  }
+  h1{
+      vertical-align: middle;
+  }
+  h1 img
+  {
+      vertical-align: middle;
+  }
+.search{
+width: 300px;
+height: 50px;
+background: #fff;
+border: 2px solid #707070;
+transform:translate(110px,0px);
+}
+
+
+.search_button{
+  margin-top:10px;
+  margin-right: 20px;
+  width: 5em;
+  height:3.5em;
+  transform: translate(110px,0px);
+}
+  
+  .header{
+      display:flex;
+  }
+  .right{
+      display:flex;
+      width:430px;
+      padding:10px 10px 10px ;
+  }
+  .left{
+      width:calc(100% - 300px);
+  }
+  .box1{
+    width: 65%;
+    height: 80px;
+    background: transparent;
+    position:relative;
+    border: solid 3px #535353;
+    top: 10px;
+    margin:0 auto;
+   	display:flex;
+   	text-decoration: none;
+   	background: #ffffff;
+  }
+.box1 a{
+   float:left;
+   margin: 15px 10px ;
+   text-decoration: none;
+   color: black;
+}
+  
+.box1 a:hover{
+	color:darkgray;
+}
+
+.linebox_c{
+  width: 120px;
+  height: 80px;
+  background-color: rgb(230, 227, 232);
+  border:1px solid black;
+  justify-content: center;
+  align-items: center;
+  transform: translate(240px, -16px);
+  text-decoration: none;
+  color:black;
+  display:flex;
+}
+.linebox_c:hover{
+  color:white;
+}
+
+.logout{
+margin: -0.4em 0 0px 34px;
+width: 7.1em;
+height:3.3em;
+}
+
+.kari{
+    margin: 0 0 0 600px; 
+}
+
+.kariteru_book_1{
+    margin: 0 0 0 400px;
+}
+.kariteru_book_2{
+    margin: 0 5px 0 5px;
+}
+.kariteru_book_3{
+    margin: 0 5px 0 5px;
+}
+.kariteru_book_4{
+    margin: 0 5px 0 5px;
+}
+.kariteru_book_5{
+    margin: 0 5px 0 5px;
+}
+
+.ures_name_ID{
+    margin: 0 0 0 30px;
+}
+.yoko_narabi{
+  
+    display:flex;
+  }
+  .dotted_line{
+    width: 85%;
+    text-align:  center;  
+    margin: 150px 100px;
+    border-bottom: 8px dashed black;
+  
+  }
+  .dotted_line p{
+   margin: 0 100px;
+  }
+  .kutikomi{
+    margin: 10px;
+    text-align: center;
+  }
+  .kutikomi_itiran_box1{
+width: 90%;
+        padding: 0em 1em;
+        margin: 1em 0;
+        font-weight: bold;
+        border: solid 3px #000000;
+        background: #ffffff;
+        margin:0 auto;
+    }
+.kutikomi_img{
+    padding: 1em 1em;
+    margin: 10px 10px;
+    border-collapse: collapse;
+    border-spacing: 10px;
+}
+table   {
+    border-collapse:collapse
+}
+.border {
+        border:3px solid #000000;
+    }
+
+.kutikomi_text{
+    max-width: 900px;
+    min-width: 900px;
+    max-height: 250px;
+    min-height: 250px;
+    margin: 10px 10px;
+    
+    
+}
+.book_title{
+    margin: 10px 10px 10px 10px;
+}
+.book_kutikomi_text_box{
+    margin: 10px 10px;
+
+    
+}
+.book_kutikomi_text{
+    margin: 10px 50px;
+    width: 800px;
+    height: 250px;
+    overflow: scroll;
+  word-wrap: break-word;
+  
+  
+}
+.max-width{
+    max-width: 900px;
+    max-height: 250px;
+    
+    
+}

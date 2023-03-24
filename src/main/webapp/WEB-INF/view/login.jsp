@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+s<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,7 @@
 			<a class="button"href="" onclick="history.go(-1); return false;">戻る</a>
 			<input type="submit"class="button_s"value="ログイン">
 		</form>
-		<a 
+		
 	</div>
 </div>
 
@@ -42,7 +42,7 @@
 			<a class="button"href="" onclick="history.go(-1); return false;">戻る</a>
 			<input type="submit"class="button_s"value="ログイン">
 		</form>
-		<a 
+		
 	</div>
 </div>
 

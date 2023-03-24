@@ -73,7 +73,7 @@
 		<label for="category">カテゴリ：</label>
 		<select id="category" name="category">
 		<option value="">選択してください</option>	
-	      <% 
+	      <%
 	        Connection conn = null;
 	        PreparedStatement pstmt = null;
 	        ResultSet rs = null;

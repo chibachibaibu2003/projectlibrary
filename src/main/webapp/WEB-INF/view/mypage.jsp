@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@page import="dto.account" %>
+<%@page import="dto.reviewList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,68 +47,53 @@
 </div>
 <div class="yoko_narabi">
 	<div class="ures_name_ID">
-    	<p style="font-size: 1.8rem;margin-right:-250px"><%=info.getName() %></p>
-    	<p style="font-size: 1.8rem;margin-right:-250px"><%=info.getMail() %></p>
+    	<p style="font-size: 1.8rem;margin-right:150px"><%=info.getName() %></p>
+    	<p style="font-size: 1.8rem;margin-right:150px"><%=info.getMail() %></p>
     </div>
-	<div class="yoko_narabi">
-		<div class="kariteru_book_1">
-			<img src="img/1.jpg" alt="" width="120" height="163">
-		</div>
-		<div class="kariteru_book_2">
-			<img src="img/1.jpg" alt="" width="120" height="163">
-		</div>
-		<div class="kariteru_book_3">
-			<img src="img/1.jpg" alt="" width="120" height="163">
-		</div>
-		<div class="kariteru_book_4">
-			<img src="img/1.jpg" alt="" width="120" height="163">
-		</div>
-		<div class="kariteru_book_5">
-			<img src="img/1.jpg" alt="" width="120" height="163">
-		</div>
+    <div class="yoko_narabi">
+<%
+	List<String> lendlist = (List<String>) session.getAttribute("lendNow");
+	for(String lend:lendlist){
+%>
+			<img src="data:image/png;base64,<%=lend %>" alt=""width="120" height="163" style="margin:0" >
+<%} %>
 	</div>
 </div>
-<p></p>       
-<div class="dotted_line"></div>
+  
+<h2>・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・</h2>
+
 
 <div class="kutikomi">
-<P style="font-size: 2rem;">貴方の口コミ</P>
+<p style="font-size: 2rem;">貴方の口コミ</p>
 </div>
 <div style="overflow: auto;" class="kutikomi_itiran_box1">
+<%
+	List<reviewList> reviewlist=(List<reviewList>)session.getAttribute("reviewList");
+	for(reviewList review : reviewlist){
+%>
         <table style="border-collapse: collapse; border-spacing: 80px;" align="left">
-        <tr>
-        <td class="kutikomi_img">
-            <img src="img/1.jpg" alt="">
-        </td>
-        </tr>
-       
-      </table>
+        	<tr>
+        		<td class="kutikomi_img">
+            		<img src="data:image/png;base64,<%=review.getUrl() %>" alt="">
+        		</td>
+        	</tr>
+      	</table>
       <table style="border-collapse: collapse; border-spacing: 80px;" class="kutikomi_text">
         <tr class="border">
             <td class="max-width" valign="top">
-    <P style="font-size: 2rem;" class="book_title">本のタイトル</P>
-    <p style="font-size: 1.2rem;" class="book_kutikomi_text">ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
+   				<p style="font-size: 2rem;" class="book_title"><%=review.getBookName() %></p>
+     			<p style="font-size: 1.2rem;" class="book_kutikomi_text"><%=review.getComment()%></p>
             </td>
-            </tr>
+         </tr>
       </table>
-      <table style="border-collapse: collapse; border-spacing: 80px;" align="left">
-        <tr>
-        <td class="kutikomi_img">
-            <img src="img/1.jpg" alt="">
-        </td>
-        </tr>
-       
-      </table>
-      <table style="border-collapse: collapse; border-spacing: 80px;" class="kutikomi_text">
-        <tr class="border">
-            <td class="max-width" valign="top">
-    <P style="font-size: 2rem;" class="book_title">本のタイトル</P>
-    <p style="font-size: 1.2rem;" class="book_kutikomi_text">ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-            </td>
-            </tr>
-      </table>
-    </div>
+<%} %>
+<div style="display:flex; justify-content:center;">
+	<a class="reviewbutton"href="./reviewServlet">口コミを書く</a>
 </div>
+
+</div>
+<div style="display:flex; justify-content:center;">
+	<a class="deletebutton"href="./DeleteServlet">アカウントの削除</a>
 </div>
 </body>
 </html>

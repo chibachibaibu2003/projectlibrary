@@ -71,7 +71,7 @@ public class SendMailDAO{
 	}
 	
 	public static List<account> getOverInfo(){
-		String sql="select * from lendbook where  delay_date +interval'1 day' <=now()::date and return_date IS NULL; ";
+		String sql="select * from lendbook where  delay_date  < now()::date and return_date IS NULL; ";
 		List<account> result=new ArrayList<>();
 		try (
 				Connection con = getConnection();

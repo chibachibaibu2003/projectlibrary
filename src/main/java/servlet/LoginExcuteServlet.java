@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.SendMailDAO;
 import dao.libraryDAO;
 import dto.account;
 import util.GenerateHashedPw;
@@ -67,6 +69,14 @@ public class LoginExcuteServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			return;
 		}else if(account.getUser_check()==1){
+			List<account> overlist=SendMailDAO.getOverInfo();
+			if(overlist!=null) {
+				SendMailDAO.SendOverNoticeMail(overlist);
+			}
+			List<account> nearlist=SendMailDAO.getNearInfo();
+			if(overlist!=null) {
+				SendMailDAO.SendNearNoticeMail(nearlist);
+			}
 			path="WEB-INF/view/administratorhome.jsp";
 			RequestDispatcher dispatcher=request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);

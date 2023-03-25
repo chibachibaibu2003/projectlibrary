@@ -46,6 +46,7 @@ import dto.account;
 import dto.book;
 import dto.lendbook;
 import dto.review;
+import dto.reviewList;
 import util.GenerateHashedPw;
 import util.GenerateSalt;
 
@@ -359,9 +360,9 @@ public class libraryDAO{
 		return result;
 	}
 	
-	public static List<lendbook> Nowlendlist(account user){
-		String sql="SELECT * FROM lendbook WHERE user_id=? and return_date is null";
-		List<lendbook> result=new ArrayList<>();
+	public static List<String> Nowlendlist(account user){
+		String sql="select book_name,url from book as bo join lendbook as len on bo.book_id =len.book_id join account as ac on ac.id=len.user_id WHERE user_id=? and return_date is null";
+		List<String> result=new ArrayList<>();
 		
 		try (
 				Connection con = getConnection();
@@ -371,15 +372,8 @@ public class libraryDAO{
 			try (ResultSet rs = pstmt.executeQuery()){
 				
 				while(rs.next()) {
-					int lendId=rs.getInt("lend_id");
-					String lendDate=rs.getString("lend_date");
-					String returnDate=rs.getString("return_date");
-					String delayDate=rs.getString("delay_date");
-					int userId=rs.getInt("user_id");
-					int bookId=rs.getInt("book_id");
-					
-					lendbook list=new lendbook(lendId, lendDate, returnDate, delayDate, userId, bookId);				
-					result.add(list);
+					String url=rs.getString("URL");			
+					result.add(url);
 				}
 			}
 		} catch (SQLException e) {
@@ -427,32 +421,39 @@ public class libraryDAO{
 		
 	}
 	
-	public static List<review> ReviewList(List<book> data,account userdata){
-		String sql="select*from review where user_id=? and book_id=?";
-		List<book> list=data;
-		List<review> result=new ArrayList<>();
+	public static List<reviewList> ReviewList(account user){
+		String sql="""
+				select name, bo.book_name, bo.author_name, bo.isbn, bo.URL,ca.category, re.point,  re.comment_title, re.comment, re.review_date  from book as bo 
+				join lendbook as len on bo.book_id =len.book_id
+				join account as ac on ac.id=len.user_id
+				join review as re on re.user_id=ac.id
+				join category as ca on ca.category_id=bo.category_id
+				where re.user_id=?
+				""";
+		
+		List<reviewList> result=new ArrayList<>();
 		try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
-			for(book info : list) {
-				pstmt.setInt(1,userdata.getId());
-				pstmt.setInt(2,info.getBook_id());
+				pstmt.setInt(1,user.getId());
 				try (ResultSet rs = pstmt.executeQuery()){
 				
 					while(rs.next()) {
-						int reviewId=rs.getInt("review_id");
-						int point=rs.getInt("point");
-						String title=rs.getString("comment_title");
-						String comment=rs.getString("comment");
-						int userId=rs.getInt("user_id");
+						String userName=rs.getString("name");
+						String bookName=rs.getString("book_name");
+						String authorName=rs.getString("author_name");
 						String isbn=rs.getString("isbn");
-						String date=rs.getString("review_date");
-						review reviewinfo=new review(reviewId,point,title,comment,userId,isbn,date);				
+						String url=rs.getString("URL");
+						String category=rs.getString("category");
+						int point=rs.getInt("point");
+						String comTitle=rs.getString("comment_title");
+						String comment=rs.getString("comment");
+						String reviewDate=rs.getString("review_date");
+						reviewList reviewinfo=new reviewList(userName,bookName,authorName,isbn,url,category,point,comTitle,comment,reviewDate);				
 						result.add(reviewinfo);
 					}
 				}
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}catch (URISyntaxException e) {

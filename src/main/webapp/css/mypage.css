@@ -112,28 +112,16 @@ height:3.3em;
     margin: 0 0 0 600px; 
 }
 
-.kariteru_book_1{
-    margin: 0 0 0 400px;
-}
-.kariteru_book_2{
-    margin: 0 5px 0 5px;
-}
-.kariteru_book_3{
-    margin: 0 5px 0 5px;
-}
-.kariteru_book_4{
-    margin: 0 5px 0 5px;
-}
-.kariteru_book_5{
-    margin: 0 5px 0 5px;
-}
+
+
+
 
 .ures_name_ID{
     margin: 0 0 0 30px;
 }
 .yoko_narabi{
-  
     display:flex;
+    height: 300px;
   }
   .dotted_line{
     width: 85%;
@@ -150,7 +138,7 @@ height:3.3em;
     text-align: center;
   }
   .kutikomi_itiran_box1{
-width: 90%;
+		width: 90%;
         padding: 0em 1em;
         margin: 1em 0;
         font-weight: bold;
@@ -177,8 +165,6 @@ table   {
     max-height: 250px;
     min-height: 250px;
     margin: 10px 10px;
-    
-    
 }
 .book_title{
     margin: 10px 10px 10px 10px;
@@ -199,7 +185,37 @@ table   {
 }
 .max-width{
     max-width: 900px;
-    max-height: 250px;
-    
-    
+    max-height: 250px; 
 }
+
+.reviewbutton{
+    margin-top: 10px;
+	font-size: 1.3rem;
+	text-decoration: none;
+	color:black;
+	border: solid 3px black;
+	max-width: 200px;
+}
+.reviewbutton:hover{
+	color:darkgray;
+}
+
+.deletebutton{
+	display: flex;
+	justify-content: center;
+    margin-top: 10px;
+	font-size: 1.3rem;
+	text-decoration: none;
+	color:red;
+	background-color: white;
+	border:solid 3px red;
+	max-width: 200px;
+}
+ 
+.deletebutton:hover{
+	color:darkred;
+	border:solid 3px darkred;
+}
+
+
+

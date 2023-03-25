@@ -74,7 +74,7 @@
         <table style="border-collapse: collapse; border-spacing: 80px;" align="left">
         	<tr>
         		<td class="kutikomi_img">
-            		<img src="data:image/png;base64,<%=review.getUrl() %>" alt="">
+            		<img src="data:image/png;base64,<%=review.getUrl() %>" alt=""width="180" height="254">
         		</td>
         	</tr>
       	</table>

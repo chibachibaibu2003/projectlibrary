@@ -423,7 +423,7 @@ public class libraryDAO{
 	
 	public static List<reviewList> ReviewList(account user){
 		String sql="""
-				select name, bo.book_name, bo.author_name, bo.isbn, bo.URL,ca.category, re.point,  re.comment_title, re.comment, re.review_date  from book as bo 
+				select distinct name, bo.book_name, bo.author_name, bo.isbn, bo.URL,ca.category, re.point,  re.comment_title, re.comment, re.review_date  from book as bo 
 				join lendbook as len on bo.book_id =len.book_id
 				join account as ac on ac.id=len.user_id
 				join review as re on re.user_id=ac.id
@@ -451,6 +451,76 @@ public class libraryDAO{
 						String comment=rs.getString("comment");
 						String reviewDate=rs.getString("review_date");
 						reviewList reviewinfo=new reviewList(userName,bookName,authorName,isbn,url,category,point,comTitle,comment,reviewDate);				
+						result.add(reviewinfo);
+					}
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public static List<reviewList> LendNow4List(account user){
+		String sql="""
+				select distinct name, bo.book_name, bo.author_name, bo.isbn, bo.URL,ca.category, re.point,  re.comment_title, re.comment, re.review_date  from book as bo 
+				join lendbook as len on bo.book_id =len.book_id
+				join account as ac on ac.id=len.user_id
+				join review as re on re.user_id=ac.id
+				join category as ca on ca.category_id=bo.category_id
+				where re.user_id=? and len.return_date is null
+				Limit 4 offset 0
+				""";
+		
+		List<reviewList> result=new ArrayList<>();
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+				pstmt.setInt(1,user.getId());
+				try (ResultSet rs = pstmt.executeQuery()){
+				
+					while(rs.next()) {
+						String userName=rs.getString("name");
+						String bookName=rs.getString("book_name");
+						String authorName=rs.getString("author_name");
+						String isbn=rs.getString("isbn");
+						String url=rs.getString("URL");
+						String category=rs.getString("category");
+						int point=rs.getInt("point");
+						String comTitle=rs.getString("comment_title");
+						String comment=rs.getString("comment");
+						String reviewDate=rs.getString("review_date");
+						reviewList reviewinfo=new reviewList(userName,bookName,authorName,isbn,url,category,point,comTitle,comment,reviewDate);				
+						result.add(reviewinfo);
+					}
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public static List<book> HighPointBook(){
+		String sql="""
+				select bo.book_name, url from book as bo
+				join review as re on bo.isbn=re.isbn
+				order by point desc limit 4 offset 0
+				""";
+		List<book> result=new ArrayList<>();
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+				try (ResultSet rs = pstmt.executeQuery()){
+				
+					while(rs.next()) {
+						String url=rs.getString("URL");
+						String name=rs.getString("book_name");
+						book reviewinfo=new book(0, name, null, null, null, null, 0, 0, null, url);				
 						result.add(reviewinfo);
 					}
 				}

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import dao.SendMailDAO;
 import dao.libraryDAO;
 import dto.account;
+import dto.book;
+import dto.reviewList;
 import util.GenerateHashedPw;
 
 /**
@@ -63,8 +65,16 @@ public class LoginExcuteServlet extends HttpServlet {
 			return;
 		}else if(account.getUser_check()==0) {
 			path="WEB-INF/view/home_after.jsp";
+			
 			HttpSession session=request.getSession();
 			session.setAttribute("info",account);
+			
+			List<reviewList> lendlist=libraryDAO.LendNow4List(account);
+			session.setAttribute("lendNowList", lendlist);
+			
+			List<book> highlist=libraryDAO.HighPointBook();
+			session.setAttribute("HighPoint", highlist);
+			
 			RequestDispatcher dispatcher=request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			return;

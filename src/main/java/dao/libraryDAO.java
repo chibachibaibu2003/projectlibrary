@@ -326,7 +326,8 @@ public class libraryDAO{
 			e.printStackTrace();
 		}
 		return null;
-	}	
+	}
+	
 	
 	public static List<lendbook> lendlist(account user){
 		String sql="SELECT * FROM lendbook WHERE user_id=?";
@@ -383,34 +384,29 @@ public class libraryDAO{
 		return result;
 	}
 	
-	public static List<book> CanReviewBookList(List<lendbook> data){
-		String sql="SELECT * FROM book WHERE book_id=? ";
-		List<lendbook> list=data;
+	public static List<book> CanReviewBookList(account user){
+		String sql="""
+				select bo.book_id, bo.book_name, bo.isbn,bo.URL from book as bo
+				join lendbook as len on bo.book_id=len.book_id
+				where len.user_id=?;
+				""";
 		List<book> result=new ArrayList<>();
 		try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
-			for(lendbook info : list) {
-				pstmt.setInt(1,info.getBook_id());
+				pstmt.setInt(1,user.getId());
 				try (ResultSet rs = pstmt.executeQuery()){
 				
 					while(rs.next()) {
 						int bookId=rs.getInt("book_id");
 						String bookname=rs.getString("book_name");
-						String authorname=rs.getString("author_name");
-						String publisher=rs.getString("publisher");
-						String pubdate=rs.getString("pub_date");
 						String isbn=rs.getString("isbn");
-						int categoryId=rs.getInt("category_id");
-						int brandcheck=rs.getInt("brand_check");
-						String comment=rs.getString("comment");
 						String URL=rs.getString("URL");
-						book bookinfo=new book(bookId,bookname,authorname,publisher,pubdate,isbn,categoryId,brandcheck,comment,URL);				
+						book bookinfo=new book(bookId,bookname,null,null,null,isbn,0,0,null,URL);				
 						result.add(bookinfo);
 					}
 				}
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}catch (URISyntaxException e) {
@@ -422,10 +418,10 @@ public class libraryDAO{
 	
 	public static List<reviewList> ReviewList(account user){
 		String sql="""
-				select distinct name, bo.book_name, bo.author_name, bo.isbn, bo.URL,ca.category, re.point,  re.comment_title, re.comment, re.review_date  from book as bo 
+				select DISTINCT bo.book_name, bo.author_name, bo.isbn, bo.URL,ca.category, re.point,  re.comment_title, re.comment, re.review_date from book as bo 
 				join lendbook as len on bo.book_id =len.book_id
 				join account as ac on ac.id=len.user_id
-				join review as re on re.user_id=ac.id
+				join review as re on re.isbn=bo.isbn
 				join category as ca on ca.category_id=bo.category_id
 				where re.user_id=?
 				""";
@@ -439,7 +435,6 @@ public class libraryDAO{
 				try (ResultSet rs = pstmt.executeQuery()){
 				
 					while(rs.next()) {
-						String userName=rs.getString("name");
 						String bookName=rs.getString("book_name");
 						String authorName=rs.getString("author_name");
 						String isbn=rs.getString("isbn");
@@ -449,7 +444,7 @@ public class libraryDAO{
 						String comTitle=rs.getString("comment_title");
 						String comment=rs.getString("comment");
 						String reviewDate=rs.getString("review_date");
-						reviewList reviewinfo=new reviewList(userName,bookName,authorName,isbn,url,category,point,comTitle,comment,reviewDate);				
+						reviewList reviewinfo=new reviewList(null,bookName,authorName,isbn,url,category,point,comTitle,comment,reviewDate);				
 						result.add(reviewinfo);
 					}
 				}
@@ -572,6 +567,65 @@ public class libraryDAO{
 			e.printStackTrace();
 		} finally {
 			System.out.println(result + "件削除しました。");
+		}
+		return result;
+	}
+	
+	public static List<reviewList> GetBookInfoByIsbn(String isbn){
+		String sql="""
+				select bo.book_name, bo.author_name, bo.URL, ca.category from book as bo
+				join category as ca on ca.category_id=bo.category_id
+				where bo.isbn=?
+				""";
+		List<reviewList> result=new ArrayList<>();
+		
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+				pstmt.setString(1,isbn);
+				try (ResultSet rs = pstmt.executeQuery()){
+				
+					while(rs.next()) {
+						String bookName=rs.getString("book_name");
+						String authorName=rs.getString("author_name");
+						String url=rs.getString("URL");
+						String category=rs.getString("category");
+						reviewList reviewinfo=new reviewList(null,bookName,authorName,isbn,url,category,0,null,null,null);				
+						result.add(reviewinfo);
+					}
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public static int GetPointByIsbn(String isbn) {
+		String sql="select trunc(avg(point))as point from review where isbn=?";
+		int result=0;
+		
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setString(1, isbn);
+
+			try (ResultSet rs = pstmt.executeQuery()){
+				
+				if(rs.next()) {
+					result= rs.getInt("point");
+					return result;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件更新しました。");
 		}
 		return result;
 	}

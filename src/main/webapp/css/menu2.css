@@ -93,7 +93,7 @@ transform:translate(110px,0px);
   border:1px solid black;
   justify-content: center;
   align-items: center;
-  transform: translate(280px, -16px);
+  transform: translate(200px, -16px);
   display:flex;
   text-decoration: none;
   color:black;
@@ -108,7 +108,7 @@ transform:translate(110px,0px);
   border:1px solid black;
   justify-content: center;
   align-items: center;
-  transform: translate(139px, 25px);
+  transform: translate(59px, 25px);
   text-decoration: none;
   color:black;
   display:flex;
@@ -146,16 +146,12 @@ transform:translate(110px,0px);
 }
 
 .yoko{
-  display:-webkit-flex;
   display: flex;
-  -webkit-justify-content: space-aruond;
   justify-content: space-around;
 }
 
 .osusume_book_1{
-	display:-webkit-flex;
 	display: flex;
-	-webkit-justify-content: space-aruond;
 	justify-content: space-around;
 }
 
@@ -174,20 +170,10 @@ transform:translate(110px,0px);
 
 .osusume_itiran{
   display:flex;
+  justify-content: space-around;
 }
 
-.osusume_book_1{
-  margin: 0 70px;
-}
-.osusume_book_2{
-  margin: 0 70px;
-}
-.osusume_book_3{
-  margin: 0 70px;
-}
-.osusume_book_4{
-  margin: 0 70px;
-}
+
 .dotted_line{
   width: 85%;
   text-align:  center;  

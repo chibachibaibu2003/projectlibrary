@@ -12,6 +12,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
@@ -418,7 +420,7 @@ public class libraryDAO{
 	
 	public static List<reviewList> ReviewList(account user){
 		String sql="""
-				select DISTINCT bo.book_name, bo.author_name, bo.isbn, bo.URL,ca.category, re.point,  re.comment_title, re.comment, re.review_date from book as bo 
+				select distinct bo.book_name, bo.author_name, bo.isbn, bo.URL,ca.category, re.point,  re.comment_title, re.comment, re.review_date from book as bo 
 				join lendbook as len on bo.book_id =len.book_id
 				join account as ac on ac.id=len.user_id
 				join review as re on re.isbn=bo.isbn
@@ -527,9 +529,12 @@ public class libraryDAO{
 	}
 	
 	public static int ReviewWrite(review info) {
-		String sql="insert into account values(default,?,?,?,?,?,?)";
+		String sql="insert into review values(default,?,?,?,?,?,?)";
 		int result=0;
-		
+		String LocaldateStr=info.getReview_date();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localdate=LocalDate.parse(LocaldateStr, formatter);
+		java.sql.Date date=java.sql.Date.valueOf(localdate);
 		try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
@@ -539,7 +544,7 @@ public class libraryDAO{
 			pstmt.setString(3,info.getComment());
 			pstmt.setInt(4,info.getUser_id());
 			pstmt.setString(5, info.getIsbn());
-			pstmt.setString(6, info.getReview_date());
+			pstmt.setDate(6, date);
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

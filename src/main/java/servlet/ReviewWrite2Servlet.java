@@ -1,7 +1,7 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,19 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.libraryDAO;
-import dto.reviewList;
+import dto.account;
+import dto.review;
 
 /**
- * Servlet implementation class ReviewWriteServlet
+ * Servlet implementation class ReviewWrite2Servlet
  */
-@WebServlet("/ReviewWriteServlet")
-public class ReviewWriteServlet extends HttpServlet {
+@WebServlet("/ReviewWrite2Servlet")
+public class ReviewWrite2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewWriteServlet() {
+    public ReviewWrite2Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,19 +35,30 @@ public class ReviewWriteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String path="";
+		String pointStr=request.getParameter("option");
+		int point=Integer.parseInt(pointStr);
+		String title=request.getParameter("title");
+		String comment=request.getParameter("comment");
+		
 		HttpSession session=request.getSession();
+		account user=(account)session.getAttribute("info");
+		String isbn=(String)session.getAttribute("reviewSelectisbn");
+		if(pointStr==null||title==null||comment==null||isbn==null) {
+			path="WEB-INF/view/home_after.jsp";
+			RequestDispatcher dispatcher=request.getRequestDispatcher(path);
+			dispatcher.forward(request, response);
+			return;
+		}
+		LocalDate currentDate=LocalDate.now();
+		String date=String.valueOf(currentDate);
+		review info=new review(0,point,title,comment,user.getId(),isbn,date);
+		int result=libraryDAO.ReviewWrite(info);
 		
-		String isbn=request.getParameter("isbn");
-		List<reviewList> list=libraryDAO.GetBookInfoByIsbn(isbn);
-		int point =libraryDAO.GetPointByIsbn(isbn);
-		session.setAttribute("reviewSelectisbn",isbn);
-		session.setAttribute("ReviewBookInfo", list);
-		session.setAttribute("BookPoint", point);
-		
-		
-		String path="WEB-INF/view/ReviewWrite.jsp";
+		path="WEB-INF/view/mypage.jsp";
 		RequestDispatcher dispatcher=request.getRequestDispatcher(path);
 		dispatcher.forward(request, response);
+		
 	}
 
 	/**

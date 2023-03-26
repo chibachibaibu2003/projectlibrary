@@ -80,7 +80,7 @@
       	</table>
       <table style="border-collapse: collapse; border-spacing: 80px;" class="kutikomi_text">
         <tr class="border">
-            <td class="max-width" valign="top">
+            <td class="max-width" valign="top"style="">
    				<p style="font-size: 2rem;" class="book_title"><%=review.getBookName() %></p>
      			<p style="font-size: 1.2rem;" class="book_kutikomi_text"><%=review.getComment()%></p>
             </td>

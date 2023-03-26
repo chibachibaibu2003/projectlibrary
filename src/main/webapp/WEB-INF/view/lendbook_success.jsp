@@ -8,9 +8,8 @@
 <link rel="stylesheet" href="css/lendreturn.css">
 </head>
 <body>
-	<h1>貸し出す利用者のメールアドレスを入力してください</h1>
-	<input type="email" name="mail" placeholder="メールアドレス">
-	<a href="LendBook2Servlet">送信</a>
+	<h1>貸出が完了しました</h1>
+	<a href="LendBook2Servlet">もう一度</a>
 	<a href="AdminHomeServlet">ホームへ</a>
 </body>
 </html>

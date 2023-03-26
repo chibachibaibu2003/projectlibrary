@@ -14,7 +14,7 @@ import java.util.List;
 
 import dto.account;
 import dto.book;
-
+import dto.lendbook;
 public class bookDAO {
 	private static Connection getConnection() throws URISyntaxException, SQLException {
 		try {
@@ -122,28 +122,87 @@ public class bookDAO {
 		        return inputDate.isBefore(currentDate.minusYears(1));
 		    }
 		    
-		    public static List<account> getAccountBymail(String email) {
-		        List<account> users = new ArrayList<>();
+		    public static account getAccountBymail(String email) {
 		        String query = "SELECT * FROM account WHERE mail = ?";
 		        try(Connection con = getConnection();
 		        	PreparedStatement statement = con.prepareStatement(query);
 		        	){
 		   
 		            statement.setString(1, email);
-		            ResultSet resultSet = statement.executeQuery();
-		            while (resultSet.next()) {
-		                int id = resultSet.getInt("id");
-		                String name = resultSet.getString("name");
-		                String mail = resultSet.getString("mail");
-		                int user_check = resultSet.getInt("user_check");
-		                users.add(new account(id, name, mail, null, null, user_check));
-		            }
-		        } catch (SQLException e) {
-		            e.printStackTrace();
-		        } catch (URISyntaxException e) {
+		            try (ResultSet rs = statement.executeQuery()){
+						
+						if(rs.next()) {
+							int userId=rs.getInt("id");
+							String name=rs.getString("name");
+							String mail=rs.getString("mail");
+							int user_check=rs.getInt("user_check");
+							
+							return new account(userId, name, mail, null, null,user_check);
+						}
+					}
+				} catch (SQLException e) {
 					e.printStackTrace();
-		        }	
-		        return users;
+				} catch (URISyntaxException e) {
+					e.printStackTrace();
+				}
+				return null;
 		    }
-	}
+		    
+		    public static int Rendbook(lendbook le) {
+		    	int result = 0;
+		    	String sql = "INSERT INTO lendbook VALUES (default, ?, ?, ?, ?, ?)";
+		      
+		        try (Connection con = getConnection();
+		        	 PreparedStatement ps = con.prepareStatement(sql)
+		        	){           
+		                    ps.setString(1, le.getLend_date());
+		                    ps.setString(2, le.getReturn_date());
+		                    ps.setString(3, le.getDelay_date());
+		                    ps.setInt(4, le.getUser_id());
+		                    ps.setInt(5, le.getBook_id());
+		                    
+		                    // データを追加
+		                    result = ps.executeUpdate();
+		                
+		            } catch (SQLException e) {
+		    			e.printStackTrace();
+		    		} catch (URISyntaxException e) {
+						e.printStackTrace();
+		    		} 
+		    		return result;
+              }   
+		    public static int getbrand(int ID) {
+		    	int brand_check = 1;
+				String sql = "SELECT brand_check FROM book WHERE id = ?";
+				try (Connection con = getConnection();
+					 PreparedStatement ps = con.prepareStatement(sql)
+				     ){
+				    ps.setInt(1, ID);
+				    try (ResultSet rs = ps.executeQuery()) {
+				        if (rs.next()) {
+				        	
+				           brand_check = rs.getInt("brand_check");
+				        }
+				    }
+				 } catch (SQLException e) {
+			    		e.printStackTrace();
+				 } catch (URISyntaxException e) {
+						e.printStackTrace();
+			     } 
+				 return brand_check;
+			 }
+				
+				public static LocalDate getdelaydate(int id) {
+				int brand = getbrand(id);
+				LocalDate now = LocalDate.now();
+				
+				if (brand == 0) {
+				    now = now.plusDays(7);
+				} else {
+				    now = now.plusDays(14);
+				}
+				return now;
+			}
+		}
+					
 

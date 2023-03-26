@@ -11,8 +11,8 @@
 <h1>管理者ホーム</h1>
     <div class="content">
         <div class="inner">
-        <a href="RegisterBookServlet" class="button1">図書貸出</a>
-        <a href="DeleteBookServlet" class="button1">図書返却</a>
+        <a href="LendBookServlet" class="button1">図書貸出</a>
+        <a href="ReturnBookServlet" class="button1">図書返却</a>
         </div>
     </div> 
     

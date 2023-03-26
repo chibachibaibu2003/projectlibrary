@@ -326,8 +326,7 @@ public class libraryDAO{
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
+	}	
 	
 	public static List<lendbook> lendlist(account user){
 		String sql="SELECT * FROM lendbook WHERE user_id=?";

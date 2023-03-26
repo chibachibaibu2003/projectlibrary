@@ -36,12 +36,12 @@
     <option>選択肢のサンプル7</option>
 </select>
 </div>
-<form action="LoginServlet"method="post">
+<form action="SearchResultServlet"method="post">
 <div class="right">
 
     <input class="search" type="search" placeholder="キーワードを入力してください">
 
-   <button class="search_button"><img src="img/2.png" alt="" width="45" height="45"></button>
+   <button class="search_button" href=""><img src="img/2.png" alt="" width="45" height="45"></button>
    
   </div>
   </div>
@@ -51,7 +51,7 @@
 </div>
 <div id="divtestbox"style="display:none" action="user_book_search.jsp"method="get">
 
-<form action="LoginExcuteServlet"method="post">
+<form action="SearchResultServlet2"method="post">
 <div class="box2" id="element">
  <div class="yoko_narabi">
 <div class="category_2">

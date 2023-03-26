@@ -1,0 +1,193 @@
+@charset "UTF-8";
+body{
+    background: color #afedf8;
+  }
+  
+  header {
+    width: 100%;
+    height: 70px;
+    background: #b7ff6f;
+    border: 4px solid #707070;
+    box-sizing: border-box;
+    
+    }
+     
+    .title {
+      margin-right: auto;
+      margin: 0px;
+      padding: 0px;
+      font-family:"book antiqua"
+  }
+    .menu-item {
+      list-style: none;
+      display: inline-block;
+      padding: 10px;
+    }
+    body { 
+          margin: 0px;
+          padding: 0px;
+  }
+  h1{
+      vertical-align: middle;
+  }
+  h1 img
+  {
+      vertical-align: middle;
+  }
+  .search{
+  width: 100%;
+  height: 50px;
+  background: #ffffff;
+  border: 1px solid #000000;
+  margin: 20px 0 0 -10px;
+  }
+  
+  .search_button{
+    margin: 20px 0 0 0px;
+    width: 5em;
+    height:3.7em;
+    background: #8ad413;
+  }
+  
+  .header{
+      display:flex;
+  }
+  .right{
+      display:flex;
+      width:575px;
+      padding:10px 10px 10px ;
+  }
+  .left{
+      width:calc(100% - 300px);
+  }
+  .box1{
+    width: 65%;
+    height: 80px;
+    background: transparent;
+    position:relative;
+    border: solid 3px #535353;
+    top: 10px;
+    margin:0 auto;
+   display:flex;
+   background: #ffffff;
+  }
+  .box1 a{
+    float:left;
+    margin: 15px 10px ;
+  }
+
+.logout{
+margin: -8px 0 0px 84px;
+width: 7.1em;
+  height: auto;
+  min-height: 75.5px;
+}
+.category select{
+    width: 250px;
+    height: 50px;
+    margin: 30px 0 0 220px ;
+}
+.yoko_narabi{
+    display:flex;
+}
+  .box2{
+    width: 65%;
+    height: auto;
+    background: transparent;
+    position:relative;
+    border: solid 1px #535353;
+    top: 10px;
+    margin:10px auto;
+   display:flex;
+   background: #ffffff;
+  }    
+ .search_Word{
+	margin: 10px 0 10px 5px;
+}
+.search_text{
+	margin: 10px 0 10px 100px;
+}
+.search_text2{
+	margin: 0px 0 0px 100px;
+}
+.box3{
+	    width: 65%;
+    height: auto;
+    background: transparent;
+    position:relative;
+    border: solid 1px #535353;
+    top: 10px;
+    margin:10px auto;
+   display:flex;
+   background: linear-gradient(rgb(255, 255, 255), rgb(192, 192, 192));
+}
+.narabi{
+	margin:20px 0 0 500px;
+}
+.book_cover{
+	margin:50px 0 0 180px;
+}
+.tate_narabi{
+  flex-direction: column;
+}
+.book_title{
+	margin:30px 0 0 0;
+}
+
+.author{
+	margin:-40px 0 0 0;
+}
+.category{
+	margin:-40px 0 0 0;
+}
+.publication{
+	margin:-40px 0 0 0;
+}
+.evaluation{
+	margin:-40px 0 0 0;
+}
+.btn--orange,a.btn--orange {
+  color: #fff;
+  background-color: #ff2e58;
+    border:1px solid #000000;
+}
+/*まずはお決まりのボックスサイズ算出をborer-boxに */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+
+.btn,
+a.btn,
+button.btn {
+ width: auto;
+  height: 30px;
+	margin:60px 0 0 300px ;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: rgb(255, 255, 255);
+  border-radius: 0.5rem;
+  }
+  .tate_narabi{
+	  display: flex;
+  flex-direction: column;
+  text-align: center;
+  }
